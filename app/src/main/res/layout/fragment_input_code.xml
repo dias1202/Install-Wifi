@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/back_button"
+        style="?attr/materialIconButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/back_button"
+        app:icon="@drawable/ic_back"
+        app:iconSize="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_forgot_password"
+        style="@style/BaseTextTitle"
+        android:text="@string/forgot_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/back_button" />
+
+    <TextView
+        android:id="@+id/tv_forgot_password_description"
+        style="@style/BaseTextDescription"
+        android:text="@string/enter_otp_code"
+        app:layout_constraintStart_toStartOf="@id/tv_forgot_password"
+        app:layout_constraintTop_toBottomOf="@id/tv_forgot_password" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tf_code"
+        style="@style/BaseTextInputLayout"
+        app:helperTextEnabled="true"
+        android:layout_margin="@dimen/margin_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_forgot_password_description">
+
+        <com.dias.installwifi.view.components.CustomEditTextEmail
+            android:id="@+id/ed_input_code"
+            style="@style/BaseInputText"
+            android:inputType="number"
+            tools:text="@string/otp_code" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/send_code_button"
+        style="@style/BaseButton"
+        android:text="@string/send_code"
+        app:layout_constraintEnd_toEndOf="@id/tf_code"
+        app:layout_constraintStart_toStartOf="@id/tf_code"
+        app:layout_constraintTop_toBottomOf="@id/tf_code" />
+
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.50" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,15 @@
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="12dp">
+
+    <ImageView
+        android:id="@+id/iv_banner"
+        android:layout_width="350dp"
+        android:layout_height="175dp"
+        android:contentDescription="@string/banner_image"
+        tools:srcCompat="@drawable/banner_1" />
+
+</com.google.android.material.card.MaterialCardView>

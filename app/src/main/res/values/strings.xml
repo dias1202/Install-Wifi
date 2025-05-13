@@ -1,0 +1,81 @@
+<resources>
+    <string name="app_name">Install Wifi</string>
+
+    // Login
+    <string name="sign_in">Masuk ke Akun \nAnda</string>
+    <string name="sign_in_description">Masukkan email dan Password Anda untuk masuk</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forgot_password_click">Lupa Password ?</string>
+    <string name="login">Log In</string>
+    <string name="or">Or</string>
+    <string name="google_login">Lanjutkan dengan Google</string>
+    <string name="doesnt_have_account">Belum punya akun?</string>
+    <string name="sign_up">Daftar</string>
+
+    // Register
+    <string name="back_button">Tombol Kembali</string>
+    <string name="sign_up_description">Buat akun untuk melanjutkan!</string>
+    <string name="full_name">Nama Lengkap</string>
+    <string name="set_password">Set Password</string>
+    <string name="register">Register</string>
+    <string name="already_have_account">Sudah punya akun?</string>
+
+    // Forgot Password
+    <string name="send_code">Kirim Kode</string>
+    <string name="forgot_password_description">Masukkan email Anda untuk menerima kode \nverifikasi</string>
+    <string name="enter_otp_code">Masukan Kode OTP</string>
+    <string name="create_new_password">Buat Password Baru</string>
+    <string name="new_password">Password Baru</string>
+    <string name="set_new_password">Set Password Baru</string>
+    <string name="otp_code">Kode OTP</string>
+
+    // Custom View
+    <string name="empty_email_error">Email tidak boleh kosong</string>
+    <string name="invalid_format_email">Format email tidak valid</string>
+    <string name="password_valid">Password valid</string>
+    <string name="password_cannot_be_blank">Password tidak boleh kosong</string>
+    <string name="password_minimum_8_characters">Password minimal 8 karakter</string>
+    <string name="password_must_contain_numbers">Password harus mengandung angka</string>
+    <string name="password_must_contain_capital_letters">Password harus mengandung huruf kapital</string>
+    <string name="password_must_be_at_least_8_characters_contain_numbers_and_capital_letters">Password harus minimal 8 karakter, mengandung angka dan huruf kapital</string>
+    <string name="forgot_password">Lupa Password</string>
+
+    // Menu
+    <string name="title_home">Beranda</string>
+    <string name="title_history">Riwayat</string>
+    <string name="title_packet">Paket</string>
+    <string name="title_profile">Profile</string>
+
+    // Home
+    <string name="banner_image">Banner Image</string>
+    <string name="package_options">Pilihan Paket</string>
+    <string name="see_all">Lihat Semua</string>
+    <string name="promo">Promo</string>
+    <string name="package_image">Gambar Paket</string>
+    <string name="price">Harga</string>
+    <string name="registration_successful">Register berhasil</string>
+    <string name="login_email_successful">Login Email Berhasil</string>
+    <string name="login_google_successful">Login Google Berhasil</string>
+    <string name="image_splash">Image Splash</string>
+    <string name="title_menu_1">Selamat Datang di Install Wifi</string>
+    <string name="desc_menu_1">Cara mudah dan cepat untuk memesan pemasangan WiFi dari rumah Anda.</string>
+    <string name="title_menu_2">Pilih Paket, Bayar, Beres!</string>
+    <string name="desc_menu_2">Pilih paket WiFi sesuai kebutuhan, lakukan pembayaran, dan kami akan atur jadwal pemasangan.</string>
+    <string name="title_menu_3">Pantau Proses, Berikan Feedback</string>
+    <string name="desc_menu_3">Lihat jadwal teknisi, dapatkan konfirmasi, dan beri ulasan setelah pemasangan selesai.Lihat jadwal teknisi, dapatkan konfirmasi, dan beri ulasan setelah pemasangan selesai.</string>
+    <string name="skip">Skip</string>
+    <string name="next">Nexk</string>
+    <string name="birth_date">Tanggal Lahir</string>
+    <string name="name">Dias Dwi Gymnastyar</string>
+    <string name="gmail">diasdwig@gmail.com</string>
+    <string name="my_profile">My Profile</string>
+    <string name="settings">Settings</string>
+    <string name="notification">Notification</string>
+    <string name="allow">Allow</string>
+    <string name="logout">Logout</string>
+
+    // Google
+    <string name="default_web_client_id">821199049386-7r4m0b3rtn9m8ep39p4qj30a3c1ciepg.apps.googleusercontent.com</string>
+
+</resources>
