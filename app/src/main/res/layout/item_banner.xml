@@ -1,15 +1,19 @@
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.carousel.MaskableFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_margin="12dp">
+    android:id="@+id/carousel_item_container"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="4dp"
+    android:foreground="?attr/selectableItemBackground"
+    app:shapeAppearance="?attr/shapeAppearanceCornerMedium">
 
     <ImageView
-        android:id="@+id/iv_banner"
-        android:layout_width="350dp"
-        android:layout_height="175dp"
-        android:contentDescription="@string/banner_image"
-        tools:srcCompat="@drawable/banner_1" />
+        android:id="@+id/carousel_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/banner_image"/>
 
-</com.google.android.material.card.MaterialCardView>
+</com.google.android.material.carousel.MaskableFrameLayout>

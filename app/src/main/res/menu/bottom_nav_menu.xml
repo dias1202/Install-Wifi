@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/navigation_home"
@@ -7,14 +8,9 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/navigation_packet"
+        android:id="@+id/navigation_package"
         android:icon="@drawable/ic_package"
-        android:title="@string/title_packet" />
-
-    <item
-        android:id="@+id/navigation_history"
-        android:icon="@drawable/ic_history"
-        android:title="@string/title_history" />
+        android:title="@string/title_package" />
 
     <item
         android:id="@+id/navigation_profile"

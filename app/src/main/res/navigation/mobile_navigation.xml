@@ -12,16 +12,10 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_packet"
-        android:name="com.dias.installwifi.view.menu.packet.PacketFragment"
-        android:label="@string/title_packet"
-        tools:layout="@layout/fragment_packet" />
-
-    <fragment
-        android:id="@+id/navigation_history"
-        android:name="com.dias.installwifi.view.menu.history.HistoryFragment"
-        android:label="@string/title_history"
-        tools:layout="@layout/fragment_history" />
+        android:id="@+id/navigation_package"
+        android:name="com.dias.installwifi.view.menu.package.PackageFragment"
+        android:label="@string/title_package"
+        tools:layout="@layout/fragment_package" />
 
     <fragment
         android:id="@+id/navigation_profile"

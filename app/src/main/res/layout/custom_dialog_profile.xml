@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.menu.profile.ProfileFragment">
+    android:layout_height="match_parent">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/civ_profile"
@@ -12,96 +11,89 @@
         android:layout_height="100dp"
         android:layout_margin="@dimen/margin_medium"
         android:src="@drawable/saya1"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/ll_name_field"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_medium"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@id/civ_profile"
-        app:layout_constraintStart_toEndOf="@id/civ_profile"
-        app:layout_constraintTop_toTopOf="@id/civ_profile">
-
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/name"
-            android:textSize="@dimen/text_size_large" />
-
-        <TextView
-            android:id="@+id/tv_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/gmail"
-            android:textSize="@dimen/text_size_medium" />
-
-    </LinearLayout>
-
     <TextView
-        android:id="@+id/tv_my_profile"
+        android:id="@+id/tv_text_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:drawablePadding="@dimen/padding_small"
         android:padding="@dimen/padding_medium"
-        android:text="@string/name"
+        android:text="@string/text_name"
         android:textSize="@dimen/text_size_medium"
-        app:drawableEndCompat="@drawable/ic_arrow_forward"
-        app:drawableStartCompat="@drawable/ic_person_32dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/civ_profile" />
 
     <TextView
-        android:id="@+id/tv_settings"
+        android:id="@+id/tv_my_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:drawablePadding="@dimen/padding_small"
         android:padding="@dimen/padding_medium"
-        android:text="@string/settings"
+        android:text="@string/name"
         android:textSize="@dimen/text_size_medium"
-        app:drawableEndCompat="@drawable/ic_arrow_forward"
-        app:drawableStartCompat="@drawable/ic_settings_32dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_my_profile" />
+        app:layout_constraintTop_toBottomOf="@id/civ_profile" />
 
     <TextView
-        android:id="@+id/tv_notification"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_email_account"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:drawablePadding="@dimen/padding_small"
         android:padding="@dimen/padding_medium"
-        android:text="@string/notification"
+        android:text="@string/email_account"
         android:textSize="@dimen/text_size_medium"
-        app:drawableStartCompat="@drawable/ic_notification_32dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_settings" />
+        app:layout_constraintTop_toBottomOf="@id/tv_text_name" />
 
     <TextView
-        android:id="@+id/state_notification"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_my_email"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="@dimen/padding_medium"
-        android:text="@string/allow"
-        app:layout_constraintBottom_toBottomOf="@id/tv_notification"
+        android:text="@string/gmail"
+        android:textSize="@dimen/text_size_medium"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tv_notification" />
+        app:layout_constraintTop_toBottomOf="@id/tv_text_name" />
 
     <TextView
-        android:id="@+id/tv_logout"
+        android:id="@+id/tv_mobile_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawablePadding="@dimen/padding_small"
         android:padding="@dimen/padding_medium"
-        android:text="@string/logout"
+        android:text="@string/mobile_number"
         android:textSize="@dimen/text_size_medium"
-        app:drawableStartCompat="@drawable/ic_logout_32dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_notification" />
+        app:layout_constraintTop_toBottomOf="@id/tv_email_account" />
+
+    <TextView
+        android:id="@+id/tv_my_mobile_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_medium"
+        android:text="@string/my_mobile_number"
+        android:textSize="@dimen/text_size_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_email_account" />
+
+    <TextView
+        android:id="@+id/tv_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_medium"
+        android:text="@string/location"
+        android:textSize="@dimen/text_size_medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_mobile_number" />
+
+    <TextView
+        android:id="@+id/tv_my_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_medium"
+        android:text="@string/my_location"
+        android:textSize="@dimen/text_size_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_mobile_number" />
 
     <ProgressBar
         android:id="@+id/loading"

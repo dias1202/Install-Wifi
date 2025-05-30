@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dias.installwifi.data.ResultState
 import com.dias.installwifi.data.model.User
-import com.dias.installwifi.data.repository.AuthRepository
+import com.dias.installwifi.data.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AuthViewModel @Inject constructor(
-    private val authRepository: AuthRepository
+    private val userRepository: UserRepository
 ) : ViewModel() {
 
     private val _registerResult = MutableStateFlow<ResultState<User>>(ResultState.Loading)
@@ -37,7 +37,7 @@ class AuthViewModel @Inject constructor(
 
     fun register(name: String, email: String, password: String) {
         viewModelScope.launch {
-            authRepository.register(name, email, password).collect {
+            userRepository.register(name, email, password).collect {
                 _registerResult.value = it
             }
         }
@@ -45,7 +45,7 @@ class AuthViewModel @Inject constructor(
 
     fun login(email: String, password: String) {
         viewModelScope.launch {
-            authRepository.login(email, password).collect {
+            userRepository.login(email, password).collect {
                 _loginResult.value = it
             }
         }
@@ -53,7 +53,7 @@ class AuthViewModel @Inject constructor(
 
     fun loginWithGoogle(idToken: String) {
         viewModelScope.launch {
-            authRepository.loginWithGoogle(idToken).collect {
+            userRepository.loginWithGoogle(idToken).collect {
                 _googleLoginResult.value = it
             }
         }
@@ -61,7 +61,7 @@ class AuthViewModel @Inject constructor(
 
     fun saveSession(user: User) {
         viewModelScope.launch {
-            authRepository.saveSession(user).collect {
+            userRepository.saveSession(user).collect {
                 _saveSessionResult.value = it
             }
         }
@@ -69,7 +69,7 @@ class AuthViewModel @Inject constructor(
 
     fun getSession() {
         viewModelScope.launch {
-            authRepository.getSession().collect {
+            userRepository.getSession().collect {
                 _getSessionResult.value = it
             }
         }
@@ -77,7 +77,7 @@ class AuthViewModel @Inject constructor(
 
     fun logout() {
         viewModelScope.launch {
-            authRepository.logout().collect {
+            userRepository.logout().collect {
                 _logoutResult.value = it
             }
         }

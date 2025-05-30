@@ -19,6 +19,7 @@ import com.dias.installwifi.utils.States.showLoading
 import com.dias.installwifi.utils.States.showToast
 import com.dias.installwifi.view.authentication.AuthActivity
 import com.dias.installwifi.view.authentication.AuthViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import kotlin.jvm.java
@@ -29,7 +30,7 @@ class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: ProfileViewModel by viewModels()
+    private val profileViewModel: ProfileViewModel by viewModels()
     private val authViewModel: AuthViewModel by viewModels()
 
     private lateinit var loading: View
@@ -50,6 +51,12 @@ class ProfileFragment : Fragment() {
             tvLogout.setOnClickListener {
                 logout()
             }
+            tvMyProfile.setOnClickListener {
+                openDialogProfile()
+            }
+            tvSettings.setOnClickListener {
+                openDialogSetting()
+            }
         }
 
         observerSession()
@@ -59,32 +66,46 @@ class ProfileFragment : Fragment() {
 
     private fun observerSession() {
         lifecycleScope.launch {
-            lifecycleScope.launch {
-                repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    authViewModel.getSessionResult.collect {
-                        when (it) {
-                            ResultState.Loading -> showLoading(loading, true)
-                            is ResultState.Success -> {
-                                showLoading(loading, false)
-                                Glide.with(requireContext())
-                                    .load(it.data.photoUrl)
-                                    .error(R.drawable.saya1)
-                                    .into(binding.civProfile)
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                authViewModel.getSessionResult.collect {
+                    when (it) {
+                        ResultState.Loading -> showLoading(loading, true)
+                        is ResultState.Success -> {
+                            showLoading(loading, false)
+                            Glide.with(requireContext())
+                                .load(it.data.photoUrl)
+                                .error(R.drawable.saya1)
+                                .into(binding.civProfile)
 
-                                binding.apply {
-                                    tvName.text = it.data.name
-                                    tvEmail.text = it.data.email
-                                }
+                            binding.apply {
+                                tvName.text = it.data.name
+                                tvEmail.text = it.data.email
                             }
-                            is ResultState.Error -> {
-                                showLoading(loading, false)
-                                showToast(requireContext(), it.error)
-                            }
+                        }
+
+                        is ResultState.Error -> {
+                            showLoading(loading, false)
+                            showToast(requireContext(), it.error)
                         }
                     }
                 }
             }
         }
+    }
+
+    private fun openDialogProfile() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setView(R.layout.custom_dialog_profile)
+            .setCancelable(true)
+            .show()
+    }
+
+    private fun openDialogSetting() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setView(R.layout.custom_dialog_setting)
+            .setTitle("Setting")
+            .setCancelable(true)
+            .show()
     }
 
     private fun logout() {

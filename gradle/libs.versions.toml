@@ -1,7 +1,7 @@
 [versions]
-agp = "8.9.2"
+agp = "8.9.3"
 circleimageview = "3.1.0"
-firebaseBom = "33.13.0"
+firebaseBom = "33.14.0"
 glide = "4.16.0"
 hiltAndroid = "2.56.2"
 hiltAndroidCompiler = "2.56.2"
@@ -19,9 +19,9 @@ lifecycleViewmodelKtx = "2.9.0"
 navigationFragmentKtx = "2.9.0"
 navigationUiKtx = "2.9.0"
 legacySupportV4 = "1.0.0"
-fragmentKtx = "1.8.6"
+fragmentKtx = "1.8.7"
 googleGmsGoogleServices = "4.4.2"
-datastoreCoreAndroid = "1.1.6"
+datastoreCoreAndroid = "1.1.7"
 playServicesAuth = "21.3.0"
 
 [libraries]

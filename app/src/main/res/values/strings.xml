@@ -44,7 +44,7 @@
     // Menu
     <string name="title_home">Beranda</string>
     <string name="title_history">Riwayat</string>
-    <string name="title_packet">Paket</string>
+    <string name="title_package">Paket</string>
     <string name="title_profile">Profile</string>
 
     // Home
@@ -57,7 +57,11 @@
     <string name="registration_successful">Register berhasil</string>
     <string name="login_email_successful">Login Email Berhasil</string>
     <string name="login_google_successful">Login Google Berhasil</string>
+
+    // Splash Screen
     <string name="image_splash">Image Splash</string>
+
+    // Onboarding
     <string name="title_menu_1">Selamat Datang di Install Wifi</string>
     <string name="desc_menu_1">Cara mudah dan cepat untuk memesan pemasangan WiFi dari rumah Anda.</string>
     <string name="title_menu_2">Pilih Paket, Bayar, Beres!</string>
@@ -65,7 +69,9 @@
     <string name="title_menu_3">Pantau Proses, Berikan Feedback</string>
     <string name="desc_menu_3">Lihat jadwal teknisi, dapatkan konfirmasi, dan beri ulasan setelah pemasangan selesai.Lihat jadwal teknisi, dapatkan konfirmasi, dan beri ulasan setelah pemasangan selesai.</string>
     <string name="skip">Skip</string>
-    <string name="next">Nexk</string>
+    <string name="next">Next</string>
+
+    // Profile
     <string name="birth_date">Tanggal Lahir</string>
     <string name="name">Dias Dwi Gymnastyar</string>
     <string name="gmail">diasdwig@gmail.com</string>
@@ -77,5 +83,29 @@
 
     // Google
     <string name="default_web_client_id">821199049386-7r4m0b3rtn9m8ep39p4qj30a3c1ciepg.apps.googleusercontent.com</string>
+    <string name="text_name">Name</string>
+    <string name="email_account">Email Account</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="my_mobile_number">Add Number</string>
+    <string name="location">Location</string>
+    <string name="my_location">USA</string>
+    <string name="theme">Theme</string>
+    <string name="light">Light</string>
+    <string name="language">Language</string>
+    <string name="eng">Eng</string>
+    <string name="news">Berita</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="arrow_forward">Arrow Forward</string>
+    <string name="package_name">Package Name</string>
+    <string name="package_speed">Package Speed</string>
+    <string name="empty_notification">Tidak ada notifikasi terbaru</string>
+    <string name="notification_title">Judul Notifikasi</string>
+    <string name="notification_content">Konten Notifikasi</string>
+    <string name="notification_time">Waktu Notifikasi</string>
+    <string name="package_detail">Detail Paket</string>
+    <string name="order_now">Pesan Sekarang</string>
+    <string name="package_description">Deskripsi Paket</string>
+    <string name="package_terms_and_condition">Syarat dan Ketentuan</string>
 
 </resources>

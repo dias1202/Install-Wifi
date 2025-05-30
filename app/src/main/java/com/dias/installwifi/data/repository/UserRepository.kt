@@ -12,10 +12,10 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
-class AuthRepository @Inject constructor(
+class UserRepository @Inject constructor(
     private val auth: FirebaseAuth,
     private val db: FirebaseFirestore,
-    private val userPreference: UserPreference
+    private val userPreference: UserPreference,
 ) {
     fun register(name: String, email: String, password: String): Flow<ResultState<User>> = flow {
         emit(ResultState.Loading)
@@ -108,7 +108,6 @@ class AuthRepository @Inject constructor(
         }
     }
 
-
     fun logout(): Flow<ResultState<Boolean>> = flow {
         emit(ResultState.Loading)
         try {
@@ -119,4 +118,5 @@ class AuthRepository @Inject constructor(
             emit(ResultState.Error(e.message ?: "Logout failed"))
         }
     }
+
 }
