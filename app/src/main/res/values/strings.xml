@@ -8,7 +8,7 @@
     <string name="password">Password</string>
     <string name="forgot_password_click">Lupa Password ?</string>
     <string name="login">Log In</string>
-    <string name="or">Or</string>
+    <string name="or">Atau</string>
     <string name="google_login">Lanjutkan dengan Google</string>
     <string name="doesnt_have_account">Belum punya akun?</string>
     <string name="sign_up">Daftar</string>
@@ -68,34 +68,32 @@
     <string name="desc_menu_2">Pilih paket WiFi sesuai kebutuhan, lakukan pembayaran, dan kami akan atur jadwal pemasangan.</string>
     <string name="title_menu_3">Pantau Proses, Berikan Feedback</string>
     <string name="desc_menu_3">Lihat jadwal teknisi, dapatkan konfirmasi, dan beri ulasan setelah pemasangan selesai.Lihat jadwal teknisi, dapatkan konfirmasi, dan beri ulasan setelah pemasangan selesai.</string>
-    <string name="skip">Skip</string>
-    <string name="next">Next</string>
+    <string name="skip">Lewati</string>
+    <string name="next">Lanjut</string>
 
     // Profile
     <string name="birth_date">Tanggal Lahir</string>
     <string name="name">Dias Dwi Gymnastyar</string>
     <string name="gmail">diasdwig@gmail.com</string>
-    <string name="my_profile">My Profile</string>
-    <string name="settings">Settings</string>
-    <string name="notification">Notification</string>
-    <string name="allow">Allow</string>
+    <string name="my_profile">Profile saya</string>
+    <string name="settings">Pengaturan</string>
+    <string name="notification">Notifikasi</string>
+    <string name="allow">Izinkan</string>
     <string name="logout">Logout</string>
 
     // Google
     <string name="default_web_client_id">821199049386-7r4m0b3rtn9m8ep39p4qj30a3c1ciepg.apps.googleusercontent.com</string>
-    <string name="text_name">Name</string>
-    <string name="email_account">Email Account</string>
-    <string name="mobile_number">Mobile Number</string>
-    <string name="my_mobile_number">Add Number</string>
-    <string name="location">Location</string>
-    <string name="my_location">USA</string>
-    <string name="theme">Theme</string>
-    <string name="light">Light</string>
-    <string name="language">Language</string>
+
+    <string name="text_name">Nama</string>
+    <string name="email_account">Akun Email</string>
+    <string name="mobile_number">Nomor Handphone</string>
+    <string name="my_mobile_number">Tambah Nomor</string>
+    <string name="location">Lokasi</string>
+    <string name="my_location">Kuningan</string>
+    <string name="theme">tema</string>
+    <string name="light">Terang</string>
+    <string name="language">Bahasa</string>
     <string name="eng">Eng</string>
-    <string name="news">Berita</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="arrow_forward">Arrow Forward</string>
     <string name="package_name">Package Name</string>
     <string name="package_speed">Package Speed</string>
@@ -107,5 +105,11 @@
     <string name="order_now">Pesan Sekarang</string>
     <string name="package_description">Deskripsi Paket</string>
     <string name="package_terms_and_condition">Syarat dan Ketentuan</string>
+    <string name="empty_package_list">Tidak ada paket yang tersedia</string>
+    <string name="banner">Banner</string>
+    <string name="banner_detail">Banner Detail</string>
+    <string name="toggle_layout">Ubah Tampilan</string>
+    <string name="edit">Edit</string>
 
 </resources>
+

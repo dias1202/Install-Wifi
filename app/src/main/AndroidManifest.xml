@@ -16,10 +16,10 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
-            android:name=".view.detail.DetailActivity"
+            android:name=".view.detail.DetailBannerActivity"
             android:exported="false" />
         <activity
-            android:name=".view.info.InfoActivity"
+            android:name=".view.detail.DetailPackageActivity"
             android:exported="false" />
         <activity
             android:name=".view.authentication.ForgotPasswordActivity"

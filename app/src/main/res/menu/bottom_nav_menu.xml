@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/navigation_home"
@@ -11,6 +10,11 @@
         android:id="@+id/navigation_package"
         android:icon="@drawable/ic_package"
         android:title="@string/title_package" />
+
+    <item
+        android:id="@+id/navigation_notification"
+        android:icon="@drawable/ic_notification_24dp"
+        android:title="@string/notification" />
 
     <item
         android:id="@+id/navigation_profile"

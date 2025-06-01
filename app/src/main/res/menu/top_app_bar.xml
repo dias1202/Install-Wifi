@@ -3,9 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/notification"
-        android:icon="@drawable/ic_notification_32dp"
-        android:title="@string/notification"
+        android:id="@+id/action_toggle_layout"
+        android:icon="@drawable/ic_grid_32dp"
+        android:title="@string/toggle_layout"
         app:showAsAction="ifRoom"/>
 
 </menu>
+

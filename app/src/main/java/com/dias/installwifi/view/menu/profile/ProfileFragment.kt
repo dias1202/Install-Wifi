@@ -1,17 +1,15 @@
 package com.dias.installwifi.view.menu.profile
 
 import android.content.Intent
-import androidx.fragment.app.viewModels
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
 import com.dias.installwifi.R
 import com.dias.installwifi.data.ResultState
 import com.dias.installwifi.databinding.FragmentProfileBinding
@@ -22,7 +20,6 @@ import com.dias.installwifi.view.authentication.AuthViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import kotlin.jvm.java
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
@@ -72,15 +69,15 @@ class ProfileFragment : Fragment() {
                         ResultState.Loading -> showLoading(loading, true)
                         is ResultState.Success -> {
                             showLoading(loading, false)
-                            Glide.with(requireContext())
-                                .load(it.data.photoUrl)
-                                .error(R.drawable.saya1)
-                                .into(binding.civProfile)
+//                            Glide.with(requireContext())
+//                                .load(it.data.photoUrl)
+//                                .error(R.drawable.saya1)
+//                                .into(binding.civProfile)
 
-                            binding.apply {
-                                tvName.text = it.data.name
-                                tvEmail.text = it.data.email
-                            }
+//                            binding.apply {
+//                                tvName.text = it.data.name
+//                                tvEmail.text = it.data.email
+//                            }
                         }
 
                         is ResultState.Error -> {

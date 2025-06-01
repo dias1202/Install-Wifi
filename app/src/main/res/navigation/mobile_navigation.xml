@@ -13,9 +13,15 @@
 
     <fragment
         android:id="@+id/navigation_package"
-        android:name="com.dias.installwifi.view.menu.package.PackageFragment"
+        android:name="com.dias.installwifi.view.menu.packages.PackageFragment"
         android:label="@string/title_package"
         tools:layout="@layout/fragment_package" />
+
+    <fragment
+        android:id="@+id/navigation_notification"
+        android:name="com.dias.installwifi.view.menu.notification.NotificationFragment"
+        android:label="@string/notification"
+        tools:layout="@layout/fragment_notification" />
 
     <fragment
         android:id="@+id/navigation_profile"

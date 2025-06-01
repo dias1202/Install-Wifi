@@ -1,4 +1,4 @@
-package com.dias.installwifi.view.info.notification
+package com.dias.installwifi.view.menu.notification
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

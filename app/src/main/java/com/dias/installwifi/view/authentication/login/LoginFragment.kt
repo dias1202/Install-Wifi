@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -40,21 +39,22 @@ class LoginFragment : Fragment() {
 
     private lateinit var loading: View
 
-    private val googleSignInLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-        try {
-            val account = task.getResult(ApiException::class.java)
-            val idToken = account.idToken
-            if (idToken != null) {
-                authViewModel.loginWithGoogle(idToken)
-                observeGoogleLoginResult()
-            } else {
-                showToast(requireContext(), "Google ID token is null")
+    private val googleSignInLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+            try {
+                val account = task.getResult(ApiException::class.java)
+                val idToken = account.idToken
+                if (idToken != null) {
+                    authViewModel.loginWithGoogle(idToken)
+                    observeGoogleLoginResult()
+                } else {
+                    showToast(requireContext(), "Google ID token is null")
+                }
+            } catch (e: ApiException) {
+                showToast(requireContext(), "Google Sign-In failed: ${e.message}")
             }
-        } catch (e: ApiException) {
-            showToast(requireContext(), "Google Sign-In failed: ${e.message}")
         }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -85,8 +85,10 @@ class LoginFragment : Fragment() {
             }
 
             googleLogin.setOnClickListener {
-                val signInIntent = googleSignInClient.signInIntent
-                googleSignInLauncher.launch(signInIntent)
+                googleSignInClient.signOut().addOnCompleteListener {
+                    val signInIntent = googleSignInClient.signInIntent
+                    googleSignInLauncher.launch(signInIntent)
+                }
             }
 
             tvForgotPassword.setOnClickListener {

@@ -1,4 +1,6 @@
 import org.gradle.kotlin.dsl.implementation
+import java.io.FileInputStream
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.android.application)
@@ -7,6 +9,7 @@ plugins {
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
     id("kotlin-parcelize")
+    kotlin("plugin.serialization") version "2.0.21"
 }
 
 android {
@@ -21,6 +24,19 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        fun getSigningProperty(propertyName: String): String {
+            val properties = Properties()
+            val file = File(rootProject.projectDir, "local.properties")
+            if (file.exists()) {
+                FileInputStream(file).use { properties.load(it) }
+            }
+
+            return properties.getProperty(propertyName, System.getenv(propertyName) ?: "")
+        }
+
+        buildConfigField("String", "SUPABASE_URL", "\"${getSigningProperty("SUPABASE_URL")}\"")
+        buildConfigField("String", "SUPABASE_ANON_KEY", "\"${getSigningProperty("SUPABASE_ANON_KEY")}\"")
 
     }
 
@@ -67,6 +83,11 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.auth)
+
+    // Supabase
+    implementation(platform(libs.bom))
+    implementation(libs.storage.kt)
+    implementation(libs.ktor.client.android)
 
     // datastore
     implementation(libs.androidx.datastore.preferences)

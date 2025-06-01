@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="@dimen/padding_medium">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/civ_profile"
@@ -94,6 +95,15 @@
         android:textSize="@dimen/text_size_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_mobile_number" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_edit"
+        style="@style/BaseOutlinedButton"
+        android:text="@string/edit"
+        android:textSize="@dimen/text_size_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_location" />
 
     <ProgressBar
         android:id="@+id/loading"

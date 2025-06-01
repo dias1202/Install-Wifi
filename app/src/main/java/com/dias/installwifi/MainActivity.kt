@@ -1,22 +1,22 @@
 package com.dias.installwifi
 
-import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.dias.installwifi.databinding.ActivityMainBinding
-import com.dias.installwifi.view.info.InfoActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.jvm.java
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
+    private var isGrid = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,16 +25,7 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.notification -> {
-                    navigateToInfoActivity()
-                    true
-                }
-
-                else -> false
-            }
-        }
+        setSupportActionBar(binding.topAppBar)
 
         val navView: BottomNavigationView = binding.navView
 
@@ -43,10 +34,35 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
 
         navView.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            binding.topAppBar.menu.findItem(R.id.action_toggle_layout)?.isVisible =
+                destination.id == R.id.navigation_package
+        }
     }
 
-    private fun navigateToInfoActivity() {
-        val intent = Intent(this, InfoActivity::class.java)
-        startActivity(intent)
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.top_app_bar, menu)
+        menu?.findItem(R.id.action_toggle_layout)?.isVisible = false
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_toggle_layout -> {
+                isGrid = !isGrid
+
+                item.setIcon(if (isGrid) R.drawable.ic_list_32dp else R.drawable.ic_grid_32dp)
+
+                val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
+                navHostFragment.childFragmentManager.setFragmentResult(
+                    "toggle_layout",
+                    Bundle().apply { putBoolean("isGrid", isGrid) }
+                )
+
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }
