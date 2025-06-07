@@ -12,7 +12,7 @@
         android:id="@+id/iv_splash"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:contentDescription="@string/image_splash"
+        android:contentDescription="@string/splash_image"
         android:src="@drawable/logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

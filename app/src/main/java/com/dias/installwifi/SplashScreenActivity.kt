@@ -13,12 +13,11 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.dias.installwifi.data.ResultState
 import com.dias.installwifi.databinding.ActivitySplashScreenBinding
 import com.dias.installwifi.view.authentication.AuthActivity
-import com.dias.installwifi.view.authentication.AuthViewModel
+import com.dias.installwifi.view.viewmodel.AuthViewModel
 import com.dias.installwifi.view.onboarding.OnboardingActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import androidx.core.content.edit
-import com.dias.installwifi.MainActivity
 
 @SuppressLint("CustomSplashScreen")
 @AndroidEntryPoint

@@ -14,5 +14,3 @@ data class Package(
     val speed: Int? = 0,
     val price: Int? = 0,
 ) : Parcelable
-
-

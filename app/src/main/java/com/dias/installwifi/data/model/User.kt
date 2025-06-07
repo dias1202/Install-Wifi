@@ -6,6 +6,8 @@ data class User(
     val email: String = "",
     val createdAt: Long = System.currentTimeMillis(),
     val photoUrl: String? = null,
+    val phoneNumber: String? = null,
+    val address: String? = null,
     val isLogin: Boolean? = false,
     val isGoogleLogin: Boolean? = false,
 )

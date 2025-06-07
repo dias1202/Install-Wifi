@@ -1,5 +1,6 @@
 package com.dias.installwifi.view.detail
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -7,14 +8,21 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.bumptech.glide.Glide
+import com.dias.installwifi.R
 import com.dias.installwifi.data.ResultState
 import com.dias.installwifi.data.model.Package
 import com.dias.installwifi.databinding.ActivityDetailPackageBinding
+import com.dias.installwifi.utils.FormatPrice.formatPrice
 import com.dias.installwifi.utils.States.showLoading
 import com.dias.installwifi.utils.States.showToast
+import com.dias.installwifi.view.order.OrderActivity
+import com.dias.installwifi.view.viewmodel.DetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import java.text.NumberFormat
+import java.util.Locale
+import kotlin.jvm.java
 
 @AndroidEntryPoint
 class DetailPackageActivity : AppCompatActivity() {
@@ -31,8 +39,14 @@ class DetailPackageActivity : AppCompatActivity() {
         val packageId = intent.getIntExtra(EXTRA_PACKAGE_ID, 0)
         viewModel.getPackageById(packageId)
 
-        binding.topAppBar.setNavigationOnClickListener {
-            onBackPressedDispatcher.onBackPressed()
+        binding.apply {
+            topAppBar.setNavigationOnClickListener {
+                onBackPressedDispatcher.onBackPressed()
+            }
+
+            btnOrder.setOnClickListener {
+                navigateToOrderScreen(packageId)
+            }
         }
 
         observeViewModel()
@@ -68,13 +82,25 @@ class DetailPackageActivity : AppCompatActivity() {
             tvPackageName.text = packageData.name
             tvPackageDescription.text = packageData.description
             tvPackageTerms.text = packageData.termsAndConditions
-            tvPackageSpeed.text = packageData.speed.toString()
-            tvPackagePrice.text = packageData.price.toString()
+            tvPackageSpeed.text = tvPackageSpeed.context.getString(
+                R.string.package_speed,
+                packageData.speed.toString()
+            )
+            tvPackagePrice.text =
+                tvPackagePrice.context.getString(R.string.price, formatPrice(packageData.price?.toInt()
+                    ?: 0))
 
             Glide.with(ivPackage.context)
                 .load(packageData.imageHorizontalUrl)
                 .into(ivPackage)
         }
+    }
+
+    private fun navigateToOrderScreen(id: Int? = 0) {
+        val intent = Intent(this, OrderActivity::class.java).apply {
+            putExtra(EXTRA_PACKAGE_ID, id)
+        }
+        startActivity(intent)
     }
 
     companion object {

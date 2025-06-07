@@ -5,8 +5,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.dias.installwifi.databinding.ItemPackageBinding
+import com.dias.installwifi.R
 import com.dias.installwifi.data.model.Package
+import com.dias.installwifi.databinding.ItemPackageBinding
+import java.text.NumberFormat
+import java.util.Locale
 
 class PackageAdapter(
     private val onItemClick: (Package) -> Unit
@@ -30,8 +33,12 @@ class PackageAdapter(
 
     override fun onBindViewHolder(holder: PackageViewHolder, position: Int) {
         val packageItem = packageList[position]
+
+        val formattedPrice = NumberFormat.getInstance(Locale("in", "ID")).format(packageItem.price)
+
         holder.binding.apply {
-            tvPackagePrice.text = "Rp ${packageItem.price}"
+            tvPackagePrice.text =
+                tvPackagePrice.context.getString(R.string.price, formattedPrice)
 
             Glide.with(ivPackage.context)
                 .load(packageItem.imageUrl)

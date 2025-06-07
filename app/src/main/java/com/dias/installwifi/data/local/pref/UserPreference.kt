@@ -2,14 +2,14 @@ package com.dias.installwifi.data.local.pref
 
 import android.content.Context
 import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.dias.installwifi.data.model.User
-import kotlinx.coroutines.flow.map
-import androidx.datastore.preferences.core.Preferences
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -25,6 +25,8 @@ class UserPreference @Inject constructor(private val dataStore: DataStore<Prefer
             preferences[EMAIL_KEY] = user.email
             preferences[CREATED_AT_KEY] = user.createdAt.toString()
             preferences[PHOTO_URL] = user.photoUrl ?: ""
+            preferences[PHONE_NUMBER] = user.phoneNumber ?: ""
+            preferences[ADDRESS] = user.address ?: ""
             preferences[IS_GOOGLE_LOGIN_KEY] = user.isGoogleLogin == true
             preferences[IS_LOGIN_KEY] = user.isLogin == true
         }
@@ -38,6 +40,8 @@ class UserPreference @Inject constructor(private val dataStore: DataStore<Prefer
                 preferences[EMAIL_KEY] ?: "",
                 preferences[CREATED_AT_KEY]?.toLong() ?: 0,
                 preferences[PHOTO_URL] ?: "",
+                preferences[PHONE_NUMBER] ?: "",
+                preferences[ADDRESS] ?: "",
                 preferences[IS_GOOGLE_LOGIN_KEY] == true,
                 preferences[IS_LOGIN_KEY] == true
             )
@@ -56,6 +60,8 @@ class UserPreference @Inject constructor(private val dataStore: DataStore<Prefer
         private val EMAIL_KEY = stringPreferencesKey("email")
         private val CREATED_AT_KEY = stringPreferencesKey("createdAt")
         private val PHOTO_URL = stringPreferencesKey("photoUrl")
+        private val PHONE_NUMBER = stringPreferencesKey("phoneNumber")
+        private val ADDRESS = stringPreferencesKey("address")
         private val IS_LOGIN_KEY = booleanPreferencesKey("isLogin")
         private val IS_GOOGLE_LOGIN_KEY = booleanPreferencesKey("isGoogleLogin")
     }

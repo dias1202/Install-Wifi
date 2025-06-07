@@ -13,27 +13,37 @@
         android:layout_marginTop="@dimen/margin_large"
         android:drawablePadding="@dimen/padding_small"
         android:padding="@dimen/padding_medium"
-        android:text="@string/name"
+        android:text="@string/profile_title"
         android:textSize="@dimen/text_size_medium"
         app:drawableEndCompat="@drawable/ic_arrow_forward"
         app:drawableStartCompat="@drawable/ic_person_32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_settings"
-        android:layout_width="0dp"
+        android:id="@+id/tv_theme"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawablePadding="@dimen/padding_small"
         android:padding="@dimen/padding_medium"
-        android:text="@string/settings"
+        android:text="@string/theme"
         android:textSize="@dimen/text_size_medium"
-        app:drawableEndCompat="@drawable/ic_arrow_forward"
-        app:drawableStartCompat="@drawable/ic_settings_32dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:drawableStartCompat="@drawable/ic_system_theme_32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_my_profile" />
+
+    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+        android:id="@+id/tv_toogle_theme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:padding="@dimen/padding_medium"
+        android:text="@string/system_theme"
+        app:drawableEndCompat="@drawable/ic_arrow_down"
+        app:layout_constraintBottom_toBottomOf="@id/tv_theme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_theme" />
 
     <TextView
         android:id="@+id/tv_notification"
@@ -45,14 +55,16 @@
         android:textSize="@dimen/text_size_medium"
         app:drawableStartCompat="@drawable/ic_notification_32dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_settings" />
+        app:layout_constraintTop_toBottomOf="@id/tv_theme" />
 
-    <TextView
+    <com.google.android.material.textfield.MaterialAutoCompleteTextView
         android:id="@+id/state_notification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
         android:padding="@dimen/padding_medium"
-        android:text="@string/allow"
+        android:text="@string/disallow"
+        app:drawableEndCompat="@drawable/ic_arrow_down"
         app:layout_constraintBottom_toBottomOf="@id/tv_notification"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/tv_notification" />
@@ -68,16 +80,5 @@
         app:drawableStartCompat="@drawable/ic_logout_32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_notification" />
-
-    <ProgressBar
-        android:id="@+id/loading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

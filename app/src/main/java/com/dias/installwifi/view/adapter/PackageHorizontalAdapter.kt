@@ -1,14 +1,16 @@
 package com.dias.installwifi.view.adapter
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.dias.installwifi.R
 import com.dias.installwifi.databinding.ItemPackageBinding
 import com.dias.installwifi.databinding.ItemPackageHorizontalBinding
 import com.dias.installwifi.data.model.Package
+import java.text.NumberFormat
+import java.util.Locale
 
 class PackageHorizontalAdapter(
     private val onItemClick: (Package) -> Unit,
@@ -24,7 +26,6 @@ class PackageHorizontalAdapter(
     }
 
     override fun getItemViewType(position: Int): Int {
-        Log.d("PackageAdapter", "getItemViewType: isGrid=$isGrid, position=$position")
         return if (isGrid) VIEW_TYPE_GRID else VIEW_TYPE_HORIZONTAL
     }
 
@@ -54,21 +55,29 @@ class PackageHorizontalAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val packageItem = packageList[position]
+
+        val formattedPrice = NumberFormat.getInstance(Locale("in", "ID")).format(packageItem.price)
+
         if (holder is GridViewHolder) {
-            Log.d("PackageAdapter", "onBindViewHolder: GridViewHolder at $position")
-            holder.binding.tvPackagePrice.text = "Rp ${packageItem.price}"
-            Glide.with(holder.binding.ivPackage.context)
-                .load(packageItem.imageUrl)
-                .into(holder.binding.ivPackage)
+            holder.binding.apply {
+                tvPackagePrice.text =
+                    tvPackagePrice.context.getString(R.string.price, formattedPrice)
+                Glide.with(ivPackage.context)
+                    .load(packageItem.imageUrl)
+                    .into(ivPackage)
+
+            }
             holder.itemView.setOnClickListener { onItemClick(packageItem) }
         } else if (holder is HorizontalViewHolder) {
-            Log.d("PackageAdapter", "onBindViewHolder: HorizontalViewHolder at $position")
-            holder.binding.tvPackageName.text = packageItem.name
-            holder.binding.tvPackageSpeed.text = "${packageItem.speed} Mbps"
-            holder.binding.tvPackagePrice.text = "Rp ${packageItem.price}"
-            Glide.with(holder.binding.ivPackage.context)
-                .load(packageItem.imageUrl)
-                .into(holder.binding.ivPackage)
+            holder.binding.apply {
+                tvPackageName.text = packageItem.name
+                tvPackageSpeed.text = tvPackageSpeed.context.getString(R.string.package_speed, packageItem.speed.toString())
+                tvPackagePrice.text =
+                    tvPackagePrice.context.getString(R.string.price, formattedPrice)
+                Glide.with(ivPackage.context)
+                    .load(packageItem.imageUrl)
+                    .into(ivPackage)
+            }
             holder.itemView.setOnClickListener { onItemClick(packageItem) }
         }
     }
@@ -83,7 +92,6 @@ class PackageHorizontalAdapter(
 
     @SuppressLint("NotifyDataSetChanged")
     fun setGridMode(isGrid: Boolean) {
-        Log.d("PackageAdapter", "setGridMode: $isGrid")
         this.isGrid = isGrid
         notifyDataSetChanged()
     }

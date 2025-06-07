@@ -17,7 +17,7 @@ import com.dias.installwifi.data.ResultState
 import com.dias.installwifi.databinding.FragmentLoginBinding
 import com.dias.installwifi.utils.States.showLoading
 import com.dias.installwifi.utils.States.showToast
-import com.dias.installwifi.view.authentication.AuthViewModel
+import com.dias.installwifi.view.viewmodel.AuthViewModel
 import com.dias.installwifi.view.authentication.ForgotPasswordActivity
 import com.dias.installwifi.view.authentication.register.RegisterFragment
 import com.google.android.gms.auth.api.signin.GoogleSignIn

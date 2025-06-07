@@ -1,4 +1,4 @@
-package com.dias.installwifi.view.menu.packages
+package com.dias.installwifi.view.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

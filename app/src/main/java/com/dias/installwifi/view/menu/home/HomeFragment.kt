@@ -22,6 +22,7 @@ import com.dias.installwifi.view.adapter.BannerAdapter
 import com.dias.installwifi.view.adapter.PackageAdapter
 import com.dias.installwifi.view.detail.DetailBannerActivity
 import com.dias.installwifi.view.detail.DetailPackageActivity
+import com.dias.installwifi.view.viewmodel.HomeViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.carousel.CarouselLayoutManager
 import com.google.android.material.carousel.CarouselSnapHelper
@@ -52,13 +53,15 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        viewModel.apply {
+            getPackages()
+            getBanners()
+            getBannerPromo()
+        }
+
         setupBanner()
         setupPackages()
         setupBannerPromo()
-
-        viewModel.getPackages()
-        viewModel.getBanners()
-        viewModel.getBannerPromo()
 
         observePackageResult()
         observeBannerResult()

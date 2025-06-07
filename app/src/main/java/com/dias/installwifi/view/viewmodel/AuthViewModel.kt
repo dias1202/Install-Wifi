@@ -1,4 +1,4 @@
-package com.dias.installwifi.view.authentication
+package com.dias.installwifi.view.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -20,11 +20,10 @@ class AuthViewModel @Inject constructor(
     val registerResult: StateFlow<ResultState<User>> = _registerResult
 
     private val _loginResult = MutableStateFlow<ResultState<User>>(ResultState.Loading)
-    val loginResult: StateFlow<ResultState<User>> = _loginResult
+    val     loginResult: StateFlow<ResultState<User>> = _loginResult
 
     private val _googleLoginResult = MutableStateFlow<ResultState<User>>(ResultState.Loading)
     val googleLoginResult: StateFlow<ResultState<User>> = _googleLoginResult
-
 
     private val _saveSessionResult = MutableStateFlow<ResultState<Boolean>>(ResultState.Loading)
     val saveSessionResult: StateFlow<ResultState<Boolean>> = _saveSessionResult

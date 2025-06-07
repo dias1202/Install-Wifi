@@ -6,16 +6,21 @@ import com.dias.installwifi.data.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
+import io.github.jan.supabase.SupabaseClient
+import io.github.jan.supabase.storage.storage
+import io.github.jan.supabase.storage.upload
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
+import java.io.File
 import javax.inject.Inject
 
 class UserRepository @Inject constructor(
     private val auth: FirebaseAuth,
     private val db: FirebaseFirestore,
     private val userPreference: UserPreference,
+    private val supabaseClient: SupabaseClient
 ) {
     fun register(name: String, email: String, password: String): Flow<ResultState<User>> = flow {
         emit(ResultState.Loading)
@@ -24,7 +29,7 @@ class UserRepository @Inject constructor(
             val authResult = auth.createUserWithEmailAndPassword(email, password).await()
             val uid = authResult.user?.uid ?: throw Exception("UID not found")
 
-            val user = User(name, email)
+            val user = User(uid, name, email, isLogin = true)
             db.collection("users").document(uid).set(user).await()
 
             emit(ResultState.Success(user))
@@ -43,8 +48,11 @@ class UserRepository @Inject constructor(
             val name = snapshot.getString("name") ?: ""
             val emailFromDb = snapshot.getString("email") ?: ""
             val createdAt = snapshot.getLong("createdAt") ?: System.currentTimeMillis()
+            val photoUrl = snapshot.getString("photoUrl") ?: ""
+            val phoneNumber = snapshot.getString("phoneNumber") ?: ""
+            val address = snapshot.getString("address") ?: ""
 
-            val user = User(uid, name, emailFromDb, createdAt, isLogin = true)
+            val user = User(uid, name, emailFromDb, createdAt, photoUrl, phoneNumber, address)
 
             emit(ResultState.Success(user))
         } catch (e: Exception) {
@@ -55,13 +63,16 @@ class UserRepository @Inject constructor(
     fun loginWithGoogle(idToken: String): Flow<ResultState<User>> = flow {
         emit(ResultState.Loading)
         try {
-            val authResult = auth.signInWithCredential(GoogleAuthProvider.getCredential(idToken, null)).await()
+            val authResult =
+                auth.signInWithCredential(GoogleAuthProvider.getCredential(idToken, null)).await()
             val firebaseUser = authResult.user ?: throw Exception("User not found")
             val uid = firebaseUser.uid
             val email = firebaseUser.email ?: throw Exception("Email not found")
             val name = firebaseUser.displayName ?: "No Name"
             val createdAt = firebaseUser.metadata?.creationTimestamp ?: System.currentTimeMillis()
             val photoUrl = firebaseUser.photoUrl?.toString()
+            val phoneNumber = firebaseUser.phoneNumber ?: ""
+            val address = ""
 
             val userDocRef = db.collection("users").document(uid)
             val snapshot = userDocRef.get().await()
@@ -69,13 +80,26 @@ class UserRepository @Inject constructor(
             val user: User
 
             if (!snapshot.exists()) {
-                user = User(uid, name, email, createdAt, photoUrl, isGoogleLogin = true)
+                user = User(uid, name, email, createdAt, photoUrl, phoneNumber, address, isGoogleLogin = true)
                 userDocRef.set(user).await()
             } else {
                 val existingName = snapshot.getString("name") ?: name
                 val existingEmail = snapshot.getString("email") ?: email
                 val existingCreatedAt = snapshot.getLong("createdAt") ?: createdAt
-                user = User(uid, existingName, existingEmail, existingCreatedAt, isGoogleLogin = true)
+                val existingPhotoUrl = snapshot.getString("photoUrl") ?: photoUrl ?: ""
+                val existingPhoneNumber = snapshot.getString("phoneNumber") ?: phoneNumber
+                val existingAddress = snapshot.getString("address") ?: address
+
+                user = User(
+                    uid,
+                    existingName,
+                    existingEmail,
+                    existingCreatedAt,
+                    existingPhotoUrl,
+                    existingPhoneNumber,
+                    existingAddress,
+                    isGoogleLogin = true
+                )
             }
 
             emit(ResultState.Success(user))
@@ -119,4 +143,45 @@ class UserRepository @Inject constructor(
         }
     }
 
+    fun updateProfile(
+        name: String,
+        phoneNumber: String?,
+        address: String?,
+        file: File?
+    ): Flow<ResultState<User>> = flow {
+        emit(ResultState.Loading)
+        try {
+            val bucket = supabaseClient.storage.from("user-profile")
+            var imageUrl: String? = null
+            file?.let {
+                bucket.upload("${file.name}", it)
+                imageUrl = supabaseClient.storage.from("user-profile").publicUrl("${file.name}")
+            }
+            val user = userPreference.getSession().first()
+            val userDocRef = db.collection("users").document(user.uid)
+            val updateMap = mutableMapOf<String, Any>(
+                "name" to name,
+                "phoneNumber" to (phoneNumber ?: ""),
+                "address" to (address ?: "")
+            )
+            if (imageUrl != null) updateMap["photoUrl"] = imageUrl!!
+            userDocRef.update(updateMap).await()
+            // Fetch updated user from Firestore
+            val snapshot = userDocRef.get().await()
+            val updatedUser = User(
+                uid = user.uid,
+                name = snapshot.getString("name") ?: name,
+                email = snapshot.getString("email") ?: user.email,
+                createdAt = snapshot.getLong("createdAt") ?: user.createdAt,
+                photoUrl = snapshot.getString("photoUrl") ?: imageUrl ?: user.photoUrl,
+                phoneNumber = snapshot.getString("phoneNumber") ?: phoneNumber,
+                address = snapshot.getString("address") ?: address,
+                isLogin = user.isLogin,
+                isGoogleLogin = user.isGoogleLogin
+            )
+            emit(ResultState.Success(updatedUser))
+        } catch (e: Exception) {
+            emit(ResultState.Error(e.message ?: "Update failed"))
+        }
+    }
 }

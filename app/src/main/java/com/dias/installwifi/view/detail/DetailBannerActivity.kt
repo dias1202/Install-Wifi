@@ -12,6 +12,7 @@ import com.dias.installwifi.data.model.Banner
 import com.dias.installwifi.databinding.ActivityDetailBannerBinding
 import com.dias.installwifi.utils.States.showLoading
 import com.dias.installwifi.utils.States.showToast
+import com.dias.installwifi.view.viewmodel.DetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

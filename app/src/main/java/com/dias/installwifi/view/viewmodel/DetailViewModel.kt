@@ -1,4 +1,4 @@
-package com.dias.installwifi.view.detail
+package com.dias.installwifi.view.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -31,8 +31,6 @@ class DetailViewModel @Inject constructor(
                 _getDetailPackageResult.value = it
             }
         }
-
-
     }
 
     fun getBannerPromoById(bannerId: Int) {

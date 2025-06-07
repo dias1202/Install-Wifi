@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Install Wifi</string>
 
-    // Login
-    <string name="sign_in">Masuk ke Akun \nAnda</string>
+    <!-- Login -->
+    <string name="sign_in">Masuk ke Akun\nAnda</string>
     <string name="sign_in_description">Masukkan email dan Password Anda untuk masuk</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -13,7 +13,7 @@
     <string name="doesnt_have_account">Belum punya akun?</string>
     <string name="sign_up">Daftar</string>
 
-    // Register
+    <!-- Register -->
     <string name="back_button">Tombol Kembali</string>
     <string name="sign_up_description">Buat akun untuk melanjutkan!</string>
     <string name="full_name">Nama Lengkap</string>
@@ -21,16 +21,16 @@
     <string name="register">Register</string>
     <string name="already_have_account">Sudah punya akun?</string>
 
-    // Forgot Password
+    <!-- Forgot Password -->
     <string name="send_code">Kirim Kode</string>
-    <string name="forgot_password_description">Masukkan email Anda untuk menerima kode \nverifikasi</string>
+    <string name="forgot_password_description">Masukkan email Anda untuk menerima kode\nverifikasi</string>
     <string name="enter_otp_code">Masukan Kode OTP</string>
     <string name="create_new_password">Buat Password Baru</string>
     <string name="new_password">Password Baru</string>
     <string name="set_new_password">Set Password Baru</string>
     <string name="otp_code">Kode OTP</string>
 
-    // Custom View
+    <!-- Custom View -->
     <string name="empty_email_error">Email tidak boleh kosong</string>
     <string name="invalid_format_email">Format email tidak valid</string>
     <string name="password_valid">Password valid</string>
@@ -41,62 +41,66 @@
     <string name="password_must_be_at_least_8_characters_contain_numbers_and_capital_letters">Password harus minimal 8 karakter, mengandung angka dan huruf kapital</string>
     <string name="forgot_password">Lupa Password</string>
 
-    // Menu
-    <string name="title_home">Beranda</string>
-    <string name="title_history">Riwayat</string>
-    <string name="title_package">Paket</string>
-    <string name="title_profile">Profile</string>
+    <!-- Menu -->
+    <string name="home_title">Beranda</string> <!-- was: title_home -->
+    <string name="history_title">Riwayat</string> <!-- was: title_history -->
+    <string name="package_title">Paket</string> <!-- was: title_package -->
+    <string name="profile_title">Profile</string> <!-- was: title_profile -->
 
-    // Home
+    <!-- Home -->
     <string name="banner_image">Banner Image</string>
     <string name="package_options">Pilihan Paket</string>
     <string name="see_all">Lihat Semua</string>
     <string name="promo">Promo</string>
     <string name="package_image">Gambar Paket</string>
-    <string name="price">Harga</string>
+    <string name="price">Rp %1$s</string>
     <string name="registration_successful">Register berhasil</string>
     <string name="login_email_successful">Login Email Berhasil</string>
     <string name="login_google_successful">Login Google Berhasil</string>
 
-    // Splash Screen
-    <string name="image_splash">Image Splash</string>
+    <!-- Splash Screen -->
+    <string name="splash_image">Image Splash</string> <!-- was: image_splash -->
 
-    // Onboarding
-    <string name="title_menu_1">Selamat Datang di Install Wifi</string>
-    <string name="desc_menu_1">Cara mudah dan cepat untuk memesan pemasangan WiFi dari rumah Anda.</string>
-    <string name="title_menu_2">Pilih Paket, Bayar, Beres!</string>
-    <string name="desc_menu_2">Pilih paket WiFi sesuai kebutuhan, lakukan pembayaran, dan kami akan atur jadwal pemasangan.</string>
-    <string name="title_menu_3">Pantau Proses, Berikan Feedback</string>
-    <string name="desc_menu_3">Lihat jadwal teknisi, dapatkan konfirmasi, dan beri ulasan setelah pemasangan selesai.Lihat jadwal teknisi, dapatkan konfirmasi, dan beri ulasan setelah pemasangan selesai.</string>
+    <!-- Onboarding -->
+    <string name="onboarding_title_1">Selamat Datang di Install Wifi</string> <!-- was: title_menu_1 -->
+    <string name="onboarding_desc_1">Cara mudah dan cepat untuk memesan pemasangan WiFi dari rumah Anda.</string> <!-- was: desc_menu_1 -->
+    <string name="onboarding_title_2">Pilih Paket, Bayar, Beres!</string> <!-- was: title_menu_2 -->
+    <string name="onboarding_desc_2">Pilih paket WiFi sesuai kebutuhan, lakukan pembayaran, dan kami akan atur jadwal pemasangan.</string> <!-- was: desc_menu_2 -->
+    <string name="onboarding_title_3">Pantau Proses, Berikan Feedback</string> <!-- was: title_menu_3 -->
+    <string name="onboarding_desc_3">Lihat jadwal teknisi, dapatkan konfirmasi, dan beri ulasan setelah pemasangan selesai.Lihat jadwal teknisi, dapatkan konfirmasi, dan beri ulasan setelah pemasangan selesai.</string> <!-- was: desc_menu_3 -->
     <string name="skip">Lewati</string>
     <string name="next">Lanjut</string>
 
-    // Profile
+    <!-- Profile -->
     <string name="birth_date">Tanggal Lahir</string>
-    <string name="name">Dias Dwi Gymnastyar</string>
-    <string name="gmail">diasdwig@gmail.com</string>
+    <string name="user_name">Dias Dwi Gymnastyar</string> <!-- was: name -->
+    <string name="user_gmail">diasdwig@gmail.com</string> <!-- was: gmail -->
     <string name="my_profile">Profile saya</string>
     <string name="settings">Pengaturan</string>
     <string name="notification">Notifikasi</string>
     <string name="allow">Izinkan</string>
+    <string name="disallow">Tidak Izinkan</string>
     <string name="logout">Logout</string>
 
-    // Google
+    <!-- Google -->
     <string name="default_web_client_id">821199049386-7r4m0b3rtn9m8ep39p4qj30a3c1ciepg.apps.googleusercontent.com</string>
 
-    <string name="text_name">Nama</string>
+    <!-- Form Fields -->
+    <string name="field_name">Nama</string> <!-- was: text_name -->
     <string name="email_account">Akun Email</string>
     <string name="mobile_number">Nomor Handphone</string>
     <string name="my_mobile_number">Tambah Nomor</string>
     <string name="location">Lokasi</string>
     <string name="my_location">Kuningan</string>
-    <string name="theme">tema</string>
+    <string name="theme">Tema</string>
     <string name="light">Terang</string>
+    <string name="dark">Gelap</string>
+    <string name="system_theme">Tema Sistem</string>
     <string name="language">Bahasa</string>
     <string name="eng">Eng</string>
     <string name="arrow_forward">Arrow Forward</string>
     <string name="package_name">Package Name</string>
-    <string name="package_speed">Package Speed</string>
+    <string name="package_speed">%1$s Mbps</string>
     <string name="empty_notification">Tidak ada notifikasi terbaru</string>
     <string name="notification_title">Judul Notifikasi</string>
     <string name="notification_content">Konten Notifikasi</string>
@@ -110,6 +114,25 @@
     <string name="banner_detail">Banner Detail</string>
     <string name="toggle_layout">Ubah Tampilan</string>
     <string name="edit">Edit</string>
+    <string name="unlimited">Unlimited</string>
+    <string name="purchase_details">Detail Pembelian</string>
+    <string name="label_address">Alamat</string>
+    <string name="specify_address">Tentukan Alamat</string>
+    <string name="wifi">WiFi</string>
+    <string name="total_payment">Total Bayar</string>
+    <string name="ppn">PPN(11%)</string>
+    <string name="installation">Pemasangan</string>
+    <string name="discount">Diskon</string>
+    <string name="total">Total</string>
+    <string name="payment_method">Metode Pembayaran</string>
+    <string name="select_method">Pilih Metode</string>
+    <string name="pay_now">Bayar Sekarang</string>
+    <string name="order_detail">Detail Pesanan</string>
+    <string name="profile_photo">Profile Photo</string>
+    <string name="save">Simpan</string>
+    <string name="edit_profile_title">Edit Profile</string>
+    <string name="profile_updated_successfully">Profile updated successfully!</string>
+    <string name="add_location">Tambah lokasi</string>
 
 </resources>
 

@@ -20,6 +20,7 @@ import com.dias.installwifi.databinding.FragmentPackageBinding
 import com.dias.installwifi.view.adapter.PackageHorizontalAdapter
 import com.dias.installwifi.utils.States.showLoading
 import com.dias.installwifi.view.detail.DetailPackageActivity
+import com.dias.installwifi.view.viewmodel.PackageViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
