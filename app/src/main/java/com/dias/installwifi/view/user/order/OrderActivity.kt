@@ -1,5 +1,6 @@
 package com.dias.installwifi.view.user.order
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
@@ -19,13 +20,14 @@ import com.dias.installwifi.view.viewmodel.AuthViewModel
 import com.dias.installwifi.view.viewmodel.DetailViewModel
 import com.dias.installwifi.view.viewmodel.OrderViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.util.UUID
 
 @AndroidEntryPoint
 class OrderActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityOrderBinding
-
     private val authViewModel: AuthViewModel by viewModels()
     private val detailViewModel: DetailViewModel by viewModels()
     private val orderViewModel: OrderViewModel by viewModels()
@@ -47,6 +49,9 @@ class OrderActivity : AppCompatActivity() {
     private var installationFee: Double = 50000.0
     private var discount: Double = 0.0
     private var totalPrice: Double = 0.0
+
+    private var isPaymentSuccess: Boolean = false
+    private var generatedOrderId: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -147,22 +152,55 @@ class OrderActivity : AppCompatActivity() {
 
     private fun submitOrder() {
         AlertDialog.Builder(this)
-            .setTitle("Konfirmasi Pembayaran")
-            .setMessage("Apakah Anda ingin melakukan pembayaran?")
-            .setPositiveButton("Ya") { _, _ ->
-                orderViewModel.createOrder(
-                    Order(
-                        userId = userId,
-                        address = address,
-                        packageId = packageId.toString(),
-                        totalPrice = totalPrice.toInt()
-                    )
-                )
+            .setTitle(getString(R.string.payment_confirmation))
+            .setPositiveButton(getString(R.string.yes)) { _, _ ->
+                simulatePaymentProcess()
             }
-            .setNegativeButton("Batal", null)
+            .setNegativeButton(getString(R.string.cancel), null)
             .show()
     }
 
+    private fun simulatePaymentProcess() {
+        val loadingDialog = AlertDialog.Builder(this)
+            .setTitle(getString(R.string.processing_payment))
+            .setMessage(getString(R.string.please_wait))
+            .setCancelable(false)
+            .create()
+
+        loadingDialog.show()
+
+        lifecycleScope.launch {
+            delay(3000)
+            loadingDialog.dismiss()
+
+            isPaymentSuccess = (1..100).random() > 20
+            if (isPaymentSuccess) {
+                createOrder()
+            } else {
+                navigateToPaymentResult(false, "")
+            }
+        }
+    }
+
+    private fun navigateToPaymentResult(isSuccess: Boolean, orderId: String) {
+        val intent = Intent(this, PaymentResultActivity::class.java).apply {
+            putExtra(PaymentResultActivity.EXTRA_PAYMENT_STATUS, isSuccess)
+            putExtra(PaymentResultActivity.EXTRA_ORDER_ID, orderId)
+            putExtra(PaymentResultActivity.EXTRA_AMOUNT, totalPrice)
+        }
+        startActivity(intent)
+    }
+
+    private fun createOrder() {
+        orderViewModel.createOrder(
+            Order(
+                userId = userId,
+                address = address,
+                packageId = packageId.toString(),
+                totalPrice = totalPrice.toInt()
+            )
+        )
+    }
 
     private fun observeOrderResult() {
         lifecycleScope.launch {
@@ -171,7 +209,12 @@ class OrderActivity : AppCompatActivity() {
                     when (result) {
                         is ResultState.Success -> {
                             showLoading(loading, false)
-                            showToast(this@OrderActivity, "Order successful")
+
+                            val order = result.data
+                            generatedOrderId = order.id
+
+                            showToast(this@OrderActivity, getString(R.string.payment_success))
+                            navigateToPaymentResult(true, generatedOrderId)
                             finish()
                         }
 
@@ -186,4 +229,5 @@ class OrderActivity : AppCompatActivity() {
             }
         }
     }
+
 }

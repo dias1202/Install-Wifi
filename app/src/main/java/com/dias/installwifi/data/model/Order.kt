@@ -6,6 +6,7 @@ data class Order(
     val address: String = "",
     val packageId: String = "",
     val totalPrice: Int = 0,
+    val paymentProofUrl: String? = null,
     val status: String = "PENDING",
     val technicianId: String? = null,
     val orderDate: Long = System.currentTimeMillis()

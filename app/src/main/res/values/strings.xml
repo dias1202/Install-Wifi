@@ -137,6 +137,21 @@
     <string name="job_title">Tugas</string>
     <string name="app_name_technician">Install Wifi Teknisi</string>
     <string name="no_jobs_available">No jobs available</string>
+    <string name="payment_status_desc">Payment Status</string>
+    <string name="payment_success">Pembayaran Berhasil</string>
+    <string name="order_id">Order ID: %1$s</string>
+    <string name="finish">Selesai</string>
+    <string name="payment_of_successfully_processed">Pembayaran sebesar %1$s berhasil diproses.</string>
+    <string name="payment_of_failed_to_be_processed">Pembayaran sebesar %1$s gagal diproses.</string>
+    <string name="payment_failed">Pembayaran Gagal</string>
+    <string name="try_again">Coba Lagi</string>
+    <string name="get_proof_of_payment_automatically">Ambil Bukti Pembayaran Otomatis</string>
+    <string name="note">Harap Unggah Bukti Pembayaran dengan Menekan Tombol dibawah ini</string>
+    <string name="payment_confirmation">Konfirmasi Pembayaran</string>
+    <string name="yes">Ya</string>
+    <string name="cancel">Batal</string>
+    <string name="processing_payment">Proses Pembayaran</string>
+    <string name="please_wait">Tunggu Sebentar</string>
 
 </resources>
 

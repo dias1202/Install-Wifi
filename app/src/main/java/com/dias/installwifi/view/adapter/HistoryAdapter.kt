@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dias.installwifi.data.model.Order
 import com.dias.installwifi.databinding.ItemHistoryBinding
+import com.dias.installwifi.utils.FormatterUtils.formatDate
 import com.dias.installwifi.view.adapter.HistoryAdapter.HistoryViewHolder
 
 class HistoryAdapter() :
@@ -31,7 +32,7 @@ class HistoryAdapter() :
         holder.binding.apply {
             tvOrderTitle.text = history.id
             tvOrderContent.text = history.packageId
-            tvOrderTime.text = history.orderDate.toString()
+            tvOrderTime.text = formatDate(history.orderDate)
         }
     }
 
