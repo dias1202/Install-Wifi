@@ -31,16 +31,16 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="${MAPS_API_KEY}" />
+            android:value="MAPS_API_KEY" />
 
         <activity
-            android:name=".view.order.OrderActivity"
+            android:name=".view.user.order.OrderActivity"
             android:exported="false" />
         <activity
-            android:name=".view.detail.DetailBannerActivity"
+            android:name=".view.user.detail.DetailBannerActivity"
             android:exported="false" />
         <activity
-            android:name=".view.detail.DetailPackageActivity"
+            android:name=".view.user.detail.DetailPackageActivity"
             android:exported="false" />
         <activity
             android:name=".view.authentication.ForgotPasswordActivity"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.order.OrderActivity">
+    tools:context=".view.user.order.OrderActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
@@ -129,7 +129,7 @@
                         style="@style/TextAppearance.Material3.BodyMedium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_small"
+                        android:layout_marginTop="@dimen/margin_medium"
                         android:text="@string/field_name"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
@@ -145,15 +145,36 @@
                         app:layout_constraintTop_toTopOf="@id/tv_label_name" />
 
                     <TextView
+                        android:id="@+id/tv_label_phone_number"
+                        style="@style/TextAppearance.Material3.BodyMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_medium"
+                        android:text="@string/mobile_number"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_label_name" />
+
+                    <TextView
+                        android:id="@+id/tv_value_phone_number"
+                        style="@style/TextAppearance.Material3.BodyMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/padding_small"
+                        android:text="@string/my_mobile_number"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_label_phone_number" />
+
+                    <TextView
                         android:id="@+id/tv_label_address"
                         style="@style/TextAppearance.Material3.BodyMedium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="@dimen/margin_medium"
                         android:text="@string/label_address"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_label_name" />
+                        app:layout_constraintTop_toBottomOf="@id/tv_label_phone_number" />
 
                     <TextView
                         android:id="@+id/tv_value_address"
@@ -162,7 +183,6 @@
                         android:layout_height="wrap_content"
                         android:drawablePadding="@dimen/padding_small"
                         android:text="@string/specify_address"
-                        app:drawableEndCompat="@drawable/ic_arrow_forward_16dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@id/tv_label_address" />
 
@@ -171,7 +191,7 @@
                         style="@style/TextAppearance.Material3.BodyMedium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_small"
+                        android:layout_marginTop="@dimen/margin_medium"
                         android:text="@string/wifi"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
@@ -220,7 +240,7 @@
                         style="@style/TextAppearance.Material3.BodyMedium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_small"
+                        android:layout_marginTop="@dimen/margin_medium"
                         android:text="@string/wifi"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_total_payment" />
@@ -239,7 +259,7 @@
                         style="@style/TextAppearance.Material3.BodyMedium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_small"
+                        android:layout_marginTop="@dimen/margin_medium"
                         android:text="@string/ppn"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_label_wifi_price" />
@@ -258,7 +278,7 @@
                         style="@style/TextAppearance.Material3.BodyMedium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_small"
+                        android:layout_marginTop="@dimen/margin_medium"
                         android:text="@string/installation"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_label_ppn" />
@@ -277,7 +297,7 @@
                         style="@style/TextAppearance.Material3.BodyMedium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="@dimen/margin_medium"
                         android:text="@string/discount"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_label_installation" />
@@ -296,7 +316,7 @@
                         style="@style/TextAppearance.Material3.BodyMedium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_small"
+                        android:layout_marginTop="@dimen/margin_medium"
                         android:text="@string/total"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
@@ -311,28 +331,6 @@
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@id/tv_label_total" />
-
-                    <TextView
-                        android:id="@+id/tv_label_payment_method"
-                        style="@style/TextAppearance.Material3.BodyMedium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_medium"
-                        android:text="@string/payment_method"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_value_total" />
-
-                    <TextView
-                        android:id="@+id/tv_value_payment_method"
-                        style="@style/TextAppearance.Material3.BodyMedium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawablePadding="@dimen/padding_small"
-                        android:text="@string/select_method"
-                        app:drawableEndCompat="@drawable/ic_arrow_forward_16dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/tv_label_payment_method" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -22,15 +22,22 @@ class UserRepository @Inject constructor(
     private val userPreference: UserPreference,
     private val supabaseClient: SupabaseClient
 ) {
-    fun register(name: String, email: String, password: String): Flow<ResultState<User>> = flow {
+    fun register(
+        name: String,
+        email: String,
+        password: String,
+        isTechnician: Boolean
+    ): Flow<ResultState<User>> = flow {
         emit(ResultState.Loading)
 
         try {
             val authResult = auth.createUserWithEmailAndPassword(email, password).await()
             val uid = authResult.user?.uid ?: throw Exception("UID not found")
 
-            val user = User(uid, name, email, isLogin = true)
-            db.collection("users").document(uid).set(user).await()
+            val user = User(uid = uid, name = name, email = email, isLogin = true)
+
+            db.collection(if (isTechnician) "technicians" else "users").document(uid).set(user)
+                .await()
 
             emit(ResultState.Success(user))
         } catch (e: Exception) {
@@ -38,29 +45,32 @@ class UserRepository @Inject constructor(
         }
     }
 
-    fun login(email: String, password: String): Flow<ResultState<User>> = flow {
-        emit(ResultState.Loading)
-        try {
-            val authResult = auth.signInWithEmailAndPassword(email, password).await()
-            val uid = authResult.user?.uid ?: throw Exception("UID not found")
+    fun login(email: String, password: String, isTechnician: Boolean): Flow<ResultState<User>> =
+        flow {
+            emit(ResultState.Loading)
+            try {
+                val authResult = auth.signInWithEmailAndPassword(email, password).await()
+                val uid = authResult.user?.uid ?: throw Exception("UID not found")
 
-            val snapshot = db.collection("users").document(uid).get().await()
-            val name = snapshot.getString("name") ?: ""
-            val emailFromDb = snapshot.getString("email") ?: ""
-            val createdAt = snapshot.getLong("createdAt") ?: System.currentTimeMillis()
-            val photoUrl = snapshot.getString("photoUrl") ?: ""
-            val phoneNumber = snapshot.getString("phoneNumber") ?: ""
-            val address = snapshot.getString("address") ?: ""
+                val snapshot =
+                    db.collection(if (isTechnician) "technicians" else "users").document(uid).get()
+                        .await()
+                val name = snapshot.getString("name") ?: ""
+                val emailFromDb = snapshot.getString("email") ?: ""
+                val createdAt = snapshot.getLong("createdAt") ?: System.currentTimeMillis()
+                val photoUrl = snapshot.getString("photoUrl") ?: ""
+                val phoneNumber = snapshot.getString("phoneNumber") ?: ""
+                val address = snapshot.getString("address") ?: ""
 
-            val user = User(uid, name, emailFromDb, createdAt, photoUrl, phoneNumber, address)
+                val user = User(uid, name, emailFromDb, createdAt, photoUrl, phoneNumber, address)
 
-            emit(ResultState.Success(user))
-        } catch (e: Exception) {
-            emit(ResultState.Error(e.message ?: "Login failed"))
+                emit(ResultState.Success(user))
+            } catch (e: Exception) {
+                emit(ResultState.Error(e.message ?: "Login failed"))
+            }
         }
-    }
 
-    fun loginWithGoogle(idToken: String): Flow<ResultState<User>> = flow {
+    fun loginWithGoogle(idToken: String, isTechnician: Boolean): Flow<ResultState<User>> = flow {
         emit(ResultState.Loading)
         try {
             val authResult =
@@ -74,13 +84,23 @@ class UserRepository @Inject constructor(
             val phoneNumber = firebaseUser.phoneNumber ?: ""
             val address = ""
 
-            val userDocRef = db.collection("users").document(uid)
+            val userDocRef =
+                db.collection(if (isTechnician) "technicians" else "users").document(uid)
             val snapshot = userDocRef.get().await()
 
             val user: User
 
             if (!snapshot.exists()) {
-                user = User(uid, name, email, createdAt, photoUrl, phoneNumber, address, isGoogleLogin = true)
+                user = User(
+                    uid,
+                    name,
+                    email,
+                    createdAt,
+                    photoUrl,
+                    phoneNumber,
+                    address,
+                    isGoogleLogin = true
+                )
                 userDocRef.set(user).await()
             } else {
                 val existingName = snapshot.getString("name") ?: name
@@ -108,10 +128,10 @@ class UserRepository @Inject constructor(
         }
     }
 
-    fun saveSession(user: User) = flow {
+    fun saveSession(user: User, isTechnician: Boolean) = flow {
         emit(ResultState.Loading)
         try {
-            userPreference.saveSession(user)
+            userPreference.saveSession(user, isTechnician)
             emit(ResultState.Success(true))
         } catch (e: Exception) {
             emit(ResultState.Error(e.message ?: "Session not found"))
@@ -151,20 +171,26 @@ class UserRepository @Inject constructor(
     ): Flow<ResultState<User>> = flow {
         emit(ResultState.Loading)
         try {
+            val user = userPreference.getSession().first()
             val bucket = supabaseClient.storage.from("user-profile")
             var imageUrl: String? = null
             file?.let {
-                bucket.upload("${file.name}", it)
-                imageUrl = supabaseClient.storage.from("user-profile").publicUrl("${file.name}")
+                val uniqueName = "profile_${System.currentTimeMillis()}.jpg"
+
+                val storagePath = "users/${user.uid}/$uniqueName"
+
+                bucket.upload(path = storagePath, file = file, options = { upsert = true })
+
+                imageUrl = bucket.publicUrl(storagePath)
             }
-            val user = userPreference.getSession().first()
+
             val userDocRef = db.collection("users").document(user.uid)
             val updateMap = mutableMapOf<String, Any>(
                 "name" to name,
                 "phoneNumber" to (phoneNumber ?: ""),
                 "address" to (address ?: "")
             )
-            if (imageUrl != null) updateMap["photoUrl"] = imageUrl!!
+            if (imageUrl != null) updateMap["photoUrl"] = imageUrl
             userDocRef.update(updateMap).await()
             // Fetch updated user from Firestore
             val snapshot = userDocRef.get().await()
@@ -182,6 +208,17 @@ class UserRepository @Inject constructor(
             emit(ResultState.Success(updatedUser))
         } catch (e: Exception) {
             emit(ResultState.Error(e.message ?: "Update failed"))
+        }
+    }
+
+    fun getUserNameById(userId: String): Flow<ResultState<String?>> = flow {
+        emit(ResultState.Loading)
+        try {
+            val snapshot = db.collection("users").document(userId).get().await()
+            val name = snapshot.getString("name")
+            emit(ResultState.Success(name))
+        } catch (e: Exception) {
+            emit(ResultState.Error(e.message ?: "Failed to get user name"))
         }
     }
 }

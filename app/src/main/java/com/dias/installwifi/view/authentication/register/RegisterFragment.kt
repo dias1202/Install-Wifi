@@ -29,6 +29,8 @@ class RegisterFragment : Fragment() {
 
     private lateinit var loading: View
 
+    private var isTechnician = false
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,7 +51,8 @@ class RegisterFragment : Fragment() {
                 val name = binding.edInputFullName.text.toString()
                 val email = binding.edInputEmail.text.toString()
                 val password = edInputSetPassword.text.toString()
-                authViewModel.register(name, email, password)
+                isTechnician = cbRegisterAsTechnician.isChecked
+                authViewModel.register(name, email, password, isTechnician)
                 observeRegisterResult()
             }
         }

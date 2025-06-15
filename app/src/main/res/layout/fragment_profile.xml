@@ -4,81 +4,177 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.menu.profile.ProfileFragment">
+    android:padding="@dimen/padding_medium"
+    tools:context=".view.user.menu.profile.ProfileFragment">
 
-    <TextView
-        android:id="@+id/tv_my_profile"
-        android:layout_width="0dp"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_profile"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_large"
-        android:drawablePadding="@dimen/padding_small"
-        android:padding="@dimen/padding_medium"
-        android:text="@string/profile_title"
-        android:textSize="@dimen/text_size_medium"
-        app:drawableEndCompat="@drawable/ic_arrow_forward"
-        app:drawableStartCompat="@drawable/ic_person_32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/tv_theme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawablePadding="@dimen/padding_small"
-        android:padding="@dimen/padding_medium"
-        android:text="@string/theme"
-        android:textSize="@dimen/text_size_medium"
-        app:drawableStartCompat="@drawable/ic_system_theme_32dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_my_profile" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/padding_medium">
 
-    <com.google.android.material.textfield.MaterialAutoCompleteTextView
-        android:id="@+id/tv_toogle_theme"
-        android:layout_width="wrap_content"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/civ_profile"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="@dimen/margin_medium"
+                android:src="@drawable/saya1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_field_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_medium"
+                android:text="@string/field_name"
+                android:textSize="@dimen/text_size_medium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/civ_profile" />
+
+            <TextView
+                android:id="@+id/tv_value_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_medium"
+                android:text="@string/user_name"
+                android:textSize="@dimen/text_size_medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/civ_profile" />
+
+            <TextView
+                android:id="@+id/tv_field_email_account"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_medium"
+                android:text="@string/email_account"
+                android:textSize="@dimen/text_size_medium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_field_name" />
+
+            <TextView
+                android:id="@+id/tv_value_email_account"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_medium"
+                android:text="@string/user_gmail"
+                android:textSize="@dimen/text_size_medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_field_name" />
+
+            <TextView
+                android:id="@+id/tv_field_mobile_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_medium"
+                android:text="@string/mobile_number"
+                android:textSize="@dimen/text_size_medium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_field_email_account" />
+
+            <TextView
+                android:id="@+id/tv_value_mobile_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_medium"
+                android:text="@string/my_mobile_number"
+                android:textSize="@dimen/text_size_medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_field_email_account" />
+
+            <TextView
+                android:id="@+id/tv_field_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_medium"
+                android:text="@string/location"
+                android:textSize="@dimen/text_size_medium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_field_mobile_number" />
+
+            <TextView
+                android:id="@+id/tv_value_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_medium"
+                android:text="@string/my_location"
+                android:textSize="@dimen/text_size_medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_field_mobile_number" />
+
+            <com.google.android.material.button.MaterialButton
+
+                android:id="@+id/button_edit"
+                style="@style/BaseOutlinedButton"
+                android:text="@string/edit"
+                android:textSize="@dimen/text_size_medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_field_location" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_setting"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:padding="@dimen/padding_medium"
-        android:text="@string/system_theme"
-        app:drawableEndCompat="@drawable/ic_arrow_down"
-        app:layout_constraintBottom_toBottomOf="@id/tv_theme"
+        android:layout_marginTop="@dimen/margin_medium"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tv_theme" />
-
-    <TextView
-        android:id="@+id/tv_notification"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawablePadding="@dimen/padding_small"
-        android:padding="@dimen/padding_medium"
-        android:text="@string/notification"
-        android:textSize="@dimen/text_size_medium"
-        app:drawableStartCompat="@drawable/ic_notification_32dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_theme" />
+        app:layout_constraintTop_toBottomOf="@id/card_profile">
 
-    <com.google.android.material.textfield.MaterialAutoCompleteTextView
-        android:id="@+id/state_notification"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:padding="@dimen/padding_medium"
-        android:text="@string/disallow"
-        app:drawableEndCompat="@drawable/ic_arrow_down"
-        app:layout_constraintBottom_toBottomOf="@id/tv_notification"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tv_notification" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/padding_medium">
 
-    <TextView
-        android:id="@+id/tv_logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawablePadding="@dimen/padding_small"
-        android:padding="@dimen/padding_medium"
-        android:text="@string/logout"
-        android:textSize="@dimen/text_size_medium"
-        app:drawableStartCompat="@drawable/ic_logout_32dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_notification" />
+            <!--            <TextView-->
+            <!--                android:id="@+id/tv_notification"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:drawablePadding="@dimen/padding_small"-->
+            <!--                android:padding="@dimen/padding_medium"-->
+            <!--                android:text="@string/notification"-->
+            <!--                android:textSize="@dimen/text_size_medium"-->
+            <!--                app:drawableStartCompat="@drawable/ic_notification_32dp"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/state_notification"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:padding="@dimen/padding_medium"-->
+            <!--                android:text="@string/disallow"-->
+            <!--                app:drawableEndCompat="@drawable/ic_arrow_down"-->
+            <!--                app:layout_constraintBottom_toBottomOf="@id/tv_notification"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="@id/tv_notification" />-->
+
+            <TextView
+                android:id="@+id/tv_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/padding_small"
+                android:padding="@dimen/padding_medium"
+                android:text="@string/logout"
+                android:textSize="@dimen/text_size_medium"
+                app:drawableStartCompat="@drawable/ic_logout_32dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

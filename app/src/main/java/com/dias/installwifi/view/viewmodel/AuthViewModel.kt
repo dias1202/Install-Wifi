@@ -20,7 +20,7 @@ class AuthViewModel @Inject constructor(
     val registerResult: StateFlow<ResultState<User>> = _registerResult
 
     private val _loginResult = MutableStateFlow<ResultState<User>>(ResultState.Loading)
-    val     loginResult: StateFlow<ResultState<User>> = _loginResult
+    val loginResult: StateFlow<ResultState<User>> = _loginResult
 
     private val _googleLoginResult = MutableStateFlow<ResultState<User>>(ResultState.Loading)
     val googleLoginResult: StateFlow<ResultState<User>> = _googleLoginResult
@@ -34,33 +34,33 @@ class AuthViewModel @Inject constructor(
     private val _logoutResult = MutableStateFlow<ResultState<Boolean>>(ResultState.Loading)
     val logoutResult: StateFlow<ResultState<Boolean>> = _logoutResult
 
-    fun register(name: String, email: String, password: String) {
+    fun register(name: String, email: String, password: String, isTechnician: Boolean) {
         viewModelScope.launch {
-            userRepository.register(name, email, password).collect {
+            userRepository.register(name, email, password, isTechnician).collect {
                 _registerResult.value = it
             }
         }
     }
 
-    fun login(email: String, password: String) {
+    fun login(email: String, password: String, isTechnician: Boolean) {
         viewModelScope.launch {
-            userRepository.login(email, password).collect {
+            userRepository.login(email, password, isTechnician).collect {
                 _loginResult.value = it
             }
         }
     }
 
-    fun loginWithGoogle(idToken: String) {
+    fun loginWithGoogle(idToken: String, isTechnician: Boolean) {
         viewModelScope.launch {
-            userRepository.loginWithGoogle(idToken).collect {
+            userRepository.loginWithGoogle(idToken, isTechnician).collect {
                 _googleLoginResult.value = it
             }
         }
     }
 
-    fun saveSession(user: User) {
+    fun saveSession(user: User, isTechnician: Boolean) {
         viewModelScope.launch {
-            userRepository.saveSession(user).collect {
+            userRepository.saveSession(user, isTechnician).collect {
                 _saveSessionResult.value = it
             }
         }

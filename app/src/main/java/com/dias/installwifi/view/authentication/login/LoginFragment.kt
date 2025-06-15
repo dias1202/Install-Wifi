@@ -39,14 +39,17 @@ class LoginFragment : Fragment() {
 
     private lateinit var loading: View
 
+    private var isTechnician = false
+
     private val googleSignInLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
             try {
                 val account = task.getResult(ApiException::class.java)
                 val idToken = account.idToken
+                isTechnician = binding.cbLoginAsTechnician.isChecked
                 if (idToken != null) {
-                    authViewModel.loginWithGoogle(idToken)
+                    authViewModel.loginWithGoogle(idToken, isTechnician)
                     observeGoogleLoginResult()
                 } else {
                     showToast(requireContext(), "Google ID token is null")
@@ -72,6 +75,8 @@ class LoginFragment : Fragment() {
 
         loading = binding.loading
 
+        checkIsTechnician()
+
         binding.apply {
             tvSignUpClick.setOnClickListener {
                 navigateToRegister()
@@ -80,7 +85,8 @@ class LoginFragment : Fragment() {
             loginButton.setOnClickListener {
                 val email = binding.edInputEmail.text.toString()
                 val password = edInputPassword.text.toString()
-                authViewModel.login(email, password)
+                isTechnician = cbLoginAsTechnician.isChecked
+                authViewModel.login(email, password, isTechnician)
                 observeLoginResult()
             }
 
@@ -99,6 +105,31 @@ class LoginFragment : Fragment() {
         return view
     }
 
+    private fun checkIsTechnician() {
+        val userViews = listOf(
+            binding.tvOr,
+            binding.tvForgotPassword,
+            binding.googleLogin,
+            binding.tvSignUp,
+            binding.tvSignUpClick
+        )
+        val technicianViews = listOf(
+            binding.tvOr,
+            binding.tvForgotPassword,
+            binding.googleLogin,
+            binding.tvSignUp,
+            binding.tvSignUpClick
+        )
+
+        binding.cbLoginAsTechnician.setOnCheckedChangeListener { _, isChecked ->
+            val userVisibility = if (isChecked) View.VISIBLE else View.GONE
+            val techVisibility = if (isChecked) View.GONE else View.VISIBLE
+
+            userViews.forEach { it.visibility = userVisibility }
+            technicianViews.forEach { it.visibility = techVisibility }
+        }
+    }
+
     private fun observeLoginResult() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -108,7 +139,7 @@ class LoginFragment : Fragment() {
                         is ResultState.Success -> {
                             showLoading(loading, false)
                             showToast(requireContext(), getString(R.string.login_email_successful))
-                            authViewModel.saveSession(result.data)
+                            authViewModel.saveSession(result.data, isTechnician)
                             navigateToHome()
                         }
 
@@ -131,7 +162,7 @@ class LoginFragment : Fragment() {
                         is ResultState.Success -> {
                             showLoading(loading, false)
                             showToast(requireContext(), getString(R.string.login_google_successful))
-                            authViewModel.saveSession(result.data)
+                            authViewModel.saveSession(result.data, isTechnician)
                             navigateToHome()
                         }
 

@@ -5,6 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.dias.installwifi.data.model.User
@@ -18,7 +19,7 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "se
 @Singleton
 class UserPreference @Inject constructor(private val dataStore: DataStore<Preferences>) {
 
-    suspend fun saveSession(user: User) {
+    suspend fun saveSession(user: User, isTechnician: Boolean) {
         dataStore.edit { preferences ->
             preferences[UID_KEY] = user.uid
             preferences[NAME_KEY] = user.name
@@ -29,6 +30,10 @@ class UserPreference @Inject constructor(private val dataStore: DataStore<Prefer
             preferences[ADDRESS] = user.address ?: ""
             preferences[IS_GOOGLE_LOGIN_KEY] = user.isGoogleLogin == true
             preferences[IS_LOGIN_KEY] = user.isLogin == true
+            preferences[ASSIGNED_JOB_ID] = user.assignedJobId ?: ""
+            preferences[STATUS] = user.status ?: ""
+            preferences[TOTAL_JOBS_COMPLETED] = user.totalJobsCompleted ?: 0
+            preferences[IS_TECHNICIAN_KEY] = isTechnician
         }
     }
 
@@ -43,7 +48,11 @@ class UserPreference @Inject constructor(private val dataStore: DataStore<Prefer
                 preferences[PHONE_NUMBER] ?: "",
                 preferences[ADDRESS] ?: "",
                 preferences[IS_GOOGLE_LOGIN_KEY] == true,
-                preferences[IS_LOGIN_KEY] == true
+                preferences[IS_LOGIN_KEY] == true,
+                preferences[ASSIGNED_JOB_ID] ?: "",
+                preferences[STATUS] ?: "",
+                preferences[TOTAL_JOBS_COMPLETED] ?: 0,
+                preferences[IS_TECHNICIAN_KEY] == true
             )
         }
     }
@@ -64,5 +73,9 @@ class UserPreference @Inject constructor(private val dataStore: DataStore<Prefer
         private val ADDRESS = stringPreferencesKey("address")
         private val IS_LOGIN_KEY = booleanPreferencesKey("isLogin")
         private val IS_GOOGLE_LOGIN_KEY = booleanPreferencesKey("isGoogleLogin")
+        private val ASSIGNED_JOB_ID = stringPreferencesKey("assignedJobId")
+        private val STATUS = stringPreferencesKey("status")
+        private val TOTAL_JOBS_COMPLETED = intPreferencesKey("totalJobsCompleted")
+        private val IS_TECHNICIAN_KEY = booleanPreferencesKey("isTechnician")
     }
 }

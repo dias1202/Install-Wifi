@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.detail.DetailPackageActivity">
+    tools:context=".view.user.detail.DetailPackageActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
@@ -104,6 +104,7 @@
             <Button
                 android:id="@+id/btn_order"
                 style="@style/BaseOutlinedButton"
+                android:layout_marginTop="@dimen/margin_medium"
                 android:text="@string/order_now"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

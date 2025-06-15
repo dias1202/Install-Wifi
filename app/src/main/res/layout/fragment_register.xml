@@ -103,13 +103,21 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <CheckBox
+        android:id="@+id/cb_register_as_technician"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register_as_technician"
+        app:layout_constraintStart_toStartOf="@id/tf_set_password"
+        app:layout_constraintTop_toBottomOf="@id/tf_set_password"/>
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/register_button"
         style="@style/BaseButton"
         android:text="@string/register"
         app:layout_constraintEnd_toEndOf="@id/tf_set_password"
         app:layout_constraintStart_toStartOf="@id/tf_set_password"
-        app:layout_constraintTop_toBottomOf="@id/tf_set_password" />
+        app:layout_constraintTop_toBottomOf="@id/cb_register_as_technician" />
 
     <TextView
         android:id="@+id/tv_sign_in"

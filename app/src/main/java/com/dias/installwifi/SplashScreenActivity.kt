@@ -56,7 +56,7 @@ class SplashScreenActivity : AppCompatActivity() {
                     when (it) {
                         ResultState.Loading -> false
                         is ResultState.Success -> {
-                            if (it.data.isLogin == true || it.data.isGoogleLogin == true) {
+                            if (it.data.isLogin == true || it.data.isGoogleLogin == true || it.data.isTechnician == true) {
                                 navigateToMainActivity()
                             } else {
                                 navigateToAuthActivity()

@@ -101,10 +101,9 @@
     <string name="arrow_forward">Arrow Forward</string>
     <string name="package_name">Package Name</string>
     <string name="package_speed">%1$s Mbps</string>
-    <string name="empty_notification">Tidak ada notifikasi terbaru</string>
-    <string name="notification_title">Judul Notifikasi</string>
-    <string name="notification_content">Konten Notifikasi</string>
-    <string name="notification_time">Waktu Notifikasi</string>
+    <string name="empty_history">Tidak ada riwayat terbaru</string>
+    <string name="history_content">Konten Riwayat</string>
+    <string name="history_time">Waktu Riwayat</string>
     <string name="package_detail">Detail Paket</string>
     <string name="order_now">Pesan Sekarang</string>
     <string name="package_description">Deskripsi Paket</string>
@@ -133,6 +132,11 @@
     <string name="edit_profile_title">Edit Profile</string>
     <string name="profile_updated_successfully">Profile updated successfully!</string>
     <string name="add_location">Tambah lokasi</string>
+    <string name="login_as_technician">Login sebagai Teknisi</string>
+    <string name="register_as_technician">Register sebagai Teknisi</string>
+    <string name="job_title">Tugas</string>
+    <string name="app_name_technician">Install Wifi Teknisi</string>
+    <string name="no_jobs_available">No jobs available</string>
 
 </resources>
 
